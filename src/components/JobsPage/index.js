@@ -51,8 +51,7 @@ const constantTypes = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   loading: 'LOADING',
-  profileFailure: 'PROFILE_FAILURE',
-  dataFailure: 'DATA_FAILURE',
+  failure: 'FAILURE',
 }
 
 class JobsPage extends Component {
@@ -95,7 +94,7 @@ class JobsPage extends Component {
         apiStatus: constantTypes.success,
       })
     } else {
-      this.setState({apiStatus: constantTypes.profileFailure})
+      this.setState({apiStatus: constantTypes.failure})
     }
   }
 
@@ -112,9 +111,18 @@ class JobsPage extends Component {
     </div>
   )
 
+  retryData = () => {
+    this.profileData()
+  }
+
   renderProfileFailure = () => (
     <div className="failure-container">
-      <button className="retry-btn" type="button">
+      <button
+        className="retry-btn"
+        type="button"
+        testid="button"
+        onClick={this.retryData}
+      >
         Retry
       </button>
     </div>
@@ -128,10 +136,10 @@ class JobsPage extends Component {
       <div className="profile-container">
         <ul className="profile-lists">
           <li className="profile-items">
-            <img src={profileImageUrl} alt={name} className="profile-avt" />
+            <img src={profileImageUrl} alt="profile" className="profile-avt" />
           </li>
           <li className="profile-items">
-            <p className="profile-name">{name}</p>
+            <h1 className="profile-name">{name}</h1>
           </li>
           <li className="profile-items">
             <p className="profile-bio">{shortBio}</p>
@@ -179,7 +187,7 @@ class JobsPage extends Component {
         {salaryRangesList.map(item => (
           <SalaryData
             item={item}
-            key={item.id}
+            key={item.salaryRangeId}
             filterSalary={this.filterSalary}
           />
         ))}
@@ -192,7 +200,7 @@ class JobsPage extends Component {
     switch (apiStatus) {
       case constantTypes.success:
         return this.renderProfileSuccess()
-      case constantTypes.profileFailure:
+      case constantTypes.failure:
         return this.renderProfileFailure()
       case constantTypes.loading:
         return this.renderLoading()
@@ -206,7 +214,7 @@ class JobsPage extends Component {
   jobsDetails = async () => {
     this.setState({apiStatus: constantTypes.loading})
     const {searchInput, empData, salData} = this.state
-    const filteredEmployee = empData.join(',')
+    const filteredEmployee = empData.join()
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -233,7 +241,7 @@ class JobsPage extends Component {
       }))
       this.setState({jobsData: updatedData, apiStatus: constantTypes.success})
     } else {
-      this.setState({apiStatus: constantTypes.dataFailure})
+      this.setState({apiStatus: constantTypes.failure})
     }
   }
 
@@ -248,7 +256,12 @@ class JobsPage extends Component {
       <p className="data-failure-text">
         We cannot seem to find the page you are looking for.
       </p>
-      <button className="data-failure-btn" type="button">
+      <button
+        className="data-failure-btn"
+        type="button"
+        testid="button"
+        onClick={this.jobsDetails}
+      >
         Retry
       </button>
     </div>
@@ -256,7 +269,19 @@ class JobsPage extends Component {
 
   renderJobsDataSuccess = () => {
     const {jobsData} = this.state
-    return (
+    return jobsData.length === 0 ? (
+      <div className="jobs-error-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png "
+          className="jobs-error-img"
+          alt="no jobs"
+        />
+        <h1 className="job-error-heading">No Jobs Found</h1>
+        <p className="job-error-text">
+          We could not find any jobs. Try other filters.
+        </p>
+      </div>
+    ) : (
       <ul className="job">
         {jobsData.map(item => (
           <JobDetails key={item.id} item={item} />
@@ -270,7 +295,7 @@ class JobsPage extends Component {
     switch (apiStatus) {
       case constantTypes.success:
         return this.renderJobsDataSuccess()
-      case constantTypes.dataFailure:
+      case constantTypes.failure:
         return this.renderJobsDataFailure()
       case constantTypes.loading:
         return this.renderLoading()
@@ -287,6 +312,12 @@ class JobsPage extends Component {
     this.jobsDetails()
   }
 
+  onSearchClick = event => {
+    if (event.key === 'Enter') {
+      this.jobsDetails()
+    }
+  }
+
   render() {
     const {searchInput} = this.state
 
@@ -298,7 +329,7 @@ class JobsPage extends Component {
             {this.renderProfileStatus()}
             <hr className="line" />
             <div className="employee-details">
-              <h1 className="emp-heading">Types of Employees</h1>
+              <h1 className="emp-heading">Type of Employment</h1>
               {this.renderEmployeeDetails()}
             </div>
             <hr className="line" />
@@ -315,6 +346,7 @@ class JobsPage extends Component {
                 placeholder="Search"
                 value={searchInput}
                 onChange={this.onChangeSearch}
+                onKeyDown={this.onSearchClick}
               />
               <button
                 type="button"

@@ -65,7 +65,7 @@ class JobDescription extends Component {
           <h1 className="skills-heading">Skills</h1>
           <ul className="skills-card">
             {skills.map(item => (
-              <li className="skills-items">
+              <li className="skills-items" key={item.name}>
                 <img
                   src={item.imageUrl}
                   alt={item.name}

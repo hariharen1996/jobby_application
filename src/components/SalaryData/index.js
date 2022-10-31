@@ -14,7 +14,12 @@ class SalaryData extends Component {
           className="salary-items"
           onClick={onChangeSalary}
         >
-          <input type="radio" id={item.salaryRangeId} name="salary" />
+          <input
+            type="radio"
+            id={item.salaryRangeId}
+            name={item.salaryRangeId}
+            value={item.salaryRangeId}
+          />
           <label htmlFor={item.salaryRangeId} className="salary-label">
             {item.label}
           </label>

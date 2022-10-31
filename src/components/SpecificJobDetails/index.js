@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Header from '../Header/index'
 import JobDescription from '../JobDescription/index'
+import SimilarJobsPage from '../SimilarJobsPage/index'
 import './index.css'
 
 const constantTypes = {
@@ -77,11 +78,21 @@ class SpecificJobDetails extends Component {
   }
 
   renderJobsData = () => {
-    const {jobsData} = this.state
+    const {jobsData, similarJobs} = this.state
     return (
-      <ul className="jobs-description">
-        <JobDescription jobsData={jobsData} />
-      </ul>
+      <>
+        <ul className="jobs-description">
+          <JobDescription jobsData={jobsData} />
+        </ul>
+        <div className="similar-jobs">
+          <h1 className="similar-jobs-main-heading">Similar Jobs</h1>
+          <ul className="similar-jobs-container">
+            {similarJobs.map(item => (
+              <SimilarJobsPage item={item} key={item.id} />
+            ))}
+          </ul>
+        </div>
+      </>
     )
   }
 
@@ -101,9 +112,13 @@ class SpecificJobDetails extends Component {
       />
       <h1 className="sp-failure-heading">Oops! Something Went Wrong</h1>
       <p className="sp-failure-text">
-        We cannot seem to find the page you are looking for
+        We cannot seem to find the page you are looking for.
       </p>
-      <button type="button" className="sp-failure-btn">
+      <button
+        type="button"
+        className="sp-failure-btn"
+        onClick={this.getSpecificJobs}
+      >
         Retry
       </button>
     </div>

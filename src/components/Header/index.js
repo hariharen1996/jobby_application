@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {AiFillHome} from 'react-icons/ai'
 import {FiLogOut} from 'react-icons/fi'
@@ -17,14 +17,20 @@ class Header extends Component {
     return (
       <nav className="navbar">
         <div className="nav-large">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
-            className="lg-logo"
-            alt="website logo"
-          />
+          <Link to="/" className="links">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/logo-img.png"
+              className="lg-logo"
+              alt="website logo"
+            />
+          </Link>
           <ul className="lg-nav-items">
-            <li className="lg-nav-links">Home</li>
-            <li className="lg-nav-links">About</li>
+            <Link to="/" className="links">
+              <li className="lg-nav-links">Home</li>
+            </Link>
+            <Link to="/jobs" className="links">
+              <li className="lg-nav-links">Jobs</li>
+            </Link>
           </ul>
           <div className="logout-btn-container">
             <button
@@ -37,14 +43,20 @@ class Header extends Component {
           </div>
 
           <ul className="sm-nav-items">
+            <Link to="/" className="links">
+              <li className="sm-nav-links">
+                <AiFillHome />
+              </li>
+            </Link>
+            <Link to="/jobs" className="links">
+              <li className="sm-nav-links">
+                <BsBriefcaseFill />
+              </li>
+            </Link>
             <li className="sm-nav-links">
-              <AiFillHome />
-            </li>
-            <li className="sm-nav-links">
-              <BsBriefcaseFill />
-            </li>
-            <li className="sm-nav-links">
-              <FiLogOut />
+              <button className="lg-btn" type="button" onClick={this.logoutApp}>
+                <FiLogOut />
+              </button>
             </li>
           </ul>
         </div>

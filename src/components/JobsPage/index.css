@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 30vh;
 }
 
 .retry-btn {
@@ -165,24 +166,24 @@
 }
 
 .failure-data-img {
-  width: 200px;
+  width: 400px;
 }
 
-.failure-data-heading {
+.data-failure-heading {
   color: #ffffff;
   font-family: 'Roboto';
   font-weight: 500;
   font-size: 23px;
 }
 
-.failure-data-text {
+.data-failure-text {
   color: #cbd5e1;
   font-weight: 500;
   font-size: 16px;
   font-family: 'Roboto';
 }
 
-.failure-data-btn {
+.data-failure-btn {
   background-color: #6366f1;
   color: #ffffff;
   padding: 8px 16px;
@@ -198,6 +199,22 @@
   color: #6366f1;
 }
 
+.clear-btn {
+  padding: 8px 13px;
+  background-color: #6366f1;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: none;
+  border: 1px solid #6366f1;
+  color: #6366f1;
+}
+
 .search-container {
   display: flex;
   width: 100%;
@@ -207,17 +224,18 @@
   width: 300px;
   background: none;
   border: 1px solid #475569;
-  padding: 6px 14px;
-  color: #475569;
+  padding: 7px 14px;
+  color: #ffffff;
   border-radius: 5px;
+  border: 1px solid #ffffff;
 }
 
 .search-btn {
-  background-color: #2c364c;
+  border: 1px solid #ffffff;
+  background: none;
   color: #ffffff;
-  border: none;
   outline: none;
-  padding: 5px 14px;
+  padding: 4px 14px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -229,6 +247,51 @@
 .job-status {
   display: flex;
   align-self: center;
+}
+
+.jobs-error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+}
+
+.jobs-error-img {
+  width: 400px;
+}
+
+.job-error-heading {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 30px;
+}
+
+.job-error-text {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 20px;
+}
+
+@media screen and (max-width: 556px) {
+  .jobs-error-img {
+    width: 230px;
+  }
+  .job-error-heading {
+    font-size: 23px;
+  }
+  .job-error-text {
+    font-size: 18px;
+  }
+  .data-failure-heading {
+    font-size: 20px;
+  }
+  .data-failure-text {
+    font-size: 16px;
+  }
+  .failure-data-img {
+    width: 250px;
+  }
 }
 
 @media screen and (max-width: 800px) {

@@ -18,23 +18,23 @@
 }
 
 .desc-logo {
-  width: 120px;
+  width: 90px;
 }
 
 .desc-heading {
   color: #ffffff;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Roboto';
 }
 
 .desc-star {
   color: #fbbf24;
-  width: 20px;
+  width: 18px;
 }
 
 .desc-star-text {
   color: #ffffff;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .desc-details {
@@ -60,7 +60,7 @@
 .desc-package {
   color: #f1f5f9;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .desc-icon {
@@ -73,14 +73,14 @@
 
 .job-desc-heading {
   color: #f1f5f9;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   font-family: 'Roboto';
 }
 
 .job-desc-text {
   color: #f1f5f9;
-  font-size: 23px;
+  font-size: 19px;
   font-family: 'Roboto';
   line-height: 1.4;
 }
@@ -100,6 +100,7 @@
 .link-icon {
   color: #6366f1;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .jb-link {
@@ -107,6 +108,7 @@
   font-family: 'Roboto';
   text-decoration: none;
   cursor: pointer;
+  font-size: 20px;
 }
 
 .skills-card {
@@ -130,7 +132,7 @@
 
 .skills-heading {
   color: #f1f5f9;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Roboto';
 }
 
@@ -151,14 +153,14 @@
 
 .company-heading {
   color: #f1f5f9;
-  font-size: 30px;
+  font-size: 25px;
   font-family: 'Roboto';
 }
 
 .company-text {
   color: #f1f5f9;
   font-family: 'Roboto';
-  font-size: 23px;
+  font-size: 19px;
   line-height: 1.6;
 }
 
@@ -251,6 +253,14 @@
   }
   .company-img {
     width: 200px;
+  }
+  .desc-loc,
+  .desc-intern,
+  .desc-package {
+    font-size: 13px;
+  }
+  .jb-link {
+    font-size: 16px;
   }
 }
 

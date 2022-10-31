@@ -7,6 +7,10 @@
   margin-bottom: 20px;
 }
 
+.jobs-details-container:hover {
+  border: 1px solid #f1f5f9;
+}
+
 .jd-logo-container {
   display: flex;
   align-items: center;
