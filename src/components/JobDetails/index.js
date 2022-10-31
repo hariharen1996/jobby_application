@@ -18,8 +18,8 @@ class JobDetails extends Component {
       title,
     } = item
     return (
-      <Link to={`/jobs/${id}`} className="specific-job-links">
-        <li className="job-details-container">
+      <li className="job-details-container">
+        <Link to={`/jobs/${id}`} className="specific-job-links">
           <div className="jd-logo-container">
             <img src={companyLogoUrl} alt="company logo" className="jd-logo" />
             <div className="jd-text-container">
@@ -48,8 +48,8 @@ class JobDetails extends Component {
           <hr className="line" />
           <h1 className="jd-desc">Description</h1>
           <p className="jd-desc-text">{jobDescription}</p>
-        </li>
-      </Link>
+        </Link>
+      </li>
     )
   }
 }

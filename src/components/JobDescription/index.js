@@ -1,5 +1,6 @@
 import {Component} from 'react'
-import {BsFillStarFill, BsBriefcaseFill} from 'react-icons/bs'
+import {BsBriefcaseFill} from 'react-icons/bs'
+import {AiFillStar} from 'react-icons/ai'
 import {BiLinkExternal} from 'react-icons/bi'
 import {ImLocation2} from 'react-icons/im'
 import './index.css'
@@ -30,7 +31,7 @@ class JobDescription extends Component {
           <div className="description-ratings-container">
             <h1 className="desc-heading">{title}</h1>
             <div className="desc-sub-rating">
-              <BsFillStarFill className="desc-star" />
+              <AiFillStar className="desc-star" />
               <p className="desc-star-text">{rating}</p>
             </div>
           </div>

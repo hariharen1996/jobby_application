@@ -8,6 +8,7 @@ class Login extends Component {
     username: '',
     password: '',
     error: '',
+    isTrue: false,
   }
 
   changeName = event => {
@@ -90,7 +91,7 @@ class Login extends Component {
                 <button type="submit" className="login-btn">
                   Login
                 </button>
-                {isTrue ? <p className="error-msg">{error}</p> : ''}
+                {isTrue ? <p className="error-msg">*{error}</p> : ''}
               </form>
             </div>
           </div>

@@ -11,7 +11,6 @@ class EmployeeData extends Component {
             id={item.employmentTypeId}
             onChange={filterEmployee}
             value={item.employmentTypeId}
-            name="employee"
           />
           <label htmlFor={item.employmentTypeId} className="emp-label">
             {item.label}

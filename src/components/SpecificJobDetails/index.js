@@ -103,6 +103,10 @@ class SpecificJobDetails extends Component {
     </div>
   )
 
+  onClickRetryJobs = () => {
+    this.getSpecificJobs()
+  }
+
   renderFailure = () => (
     <div className="sp-failure-container">
       <img
@@ -117,7 +121,7 @@ class SpecificJobDetails extends Component {
       <button
         type="button"
         className="sp-failure-btn"
-        onClick={this.getSpecificJobs}
+        onClick={this.onClickRetryJobs}
       >
         Retry
       </button>

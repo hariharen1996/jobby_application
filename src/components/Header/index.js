@@ -54,8 +54,8 @@ class Header extends Component {
               </li>
             </Link>
             <li className="sm-nav-links">
-              <button className="lg-btn" type="button" onClick={this.logoutApp}>
-                <FiLogOut />
+              <button className="lg-btn" type="button">
+                <FiLogOut onClick={this.logoutApp} />
               </button>
             </li>
           </ul>

@@ -59,6 +59,7 @@ class JobsPage extends Component {
     profileData: [],
     jobsData: [],
     apiStatus: constantTypes.initial,
+    userApiStatus: constantTypes.initial,
     searchInput: '',
     empData: [],
     salData: '',
@@ -71,7 +72,7 @@ class JobsPage extends Component {
 
   // profileData
   profileData = async () => {
-    this.setState({apiStatus: constantTypes.loading})
+    this.setState({userApiStatus: constantTypes.loading})
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -91,10 +92,10 @@ class JobsPage extends Component {
       }
       this.setState({
         profileData: updatedProfileData,
-        apiStatus: constantTypes.success,
+        userApiStatus: constantTypes.success,
       })
     } else {
-      this.setState({apiStatus: constantTypes.failure})
+      this.setState({userApiStatus: constantTypes.failure})
     }
   }
 
@@ -117,12 +118,7 @@ class JobsPage extends Component {
 
   renderProfileFailure = () => (
     <div className="failure-container">
-      <button
-        className="retry-btn"
-        type="button"
-        testid="button"
-        onClick={this.retryData}
-      >
+      <button className="retry-btn" type="button" onClick={this.retryData}>
         Retry
       </button>
     </div>
@@ -196,8 +192,8 @@ class JobsPage extends Component {
   )
 
   renderProfileStatus = () => {
-    const {apiStatus} = this.state
-    switch (apiStatus) {
+    const {userApiStatus} = this.state
+    switch (userApiStatus) {
       case constantTypes.success:
         return this.renderProfileSuccess()
       case constantTypes.failure:
@@ -214,7 +210,7 @@ class JobsPage extends Component {
   jobsDetails = async () => {
     this.setState({apiStatus: constantTypes.loading})
     const {searchInput, empData, salData} = this.state
-    const filteredEmployee = empData.join()
+    const filteredEmployee = empData.join(',')
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -245,6 +241,10 @@ class JobsPage extends Component {
     }
   }
 
+  onClickJobDetails = () => {
+    this.jobsDetails()
+  }
+
   renderJobsDataFailure = () => (
     <div className="jobs-data-failure">
       <img
@@ -259,8 +259,7 @@ class JobsPage extends Component {
       <button
         className="data-failure-btn"
         type="button"
-        testid="button"
-        onClick={this.jobsDetails}
+        onClick={this.onClickJobDetails}
       >
         Retry
       </button>
@@ -269,7 +268,14 @@ class JobsPage extends Component {
 
   renderJobsDataSuccess = () => {
     const {jobsData} = this.state
-    return jobsData.length === 0 ? (
+    const length = jobsData.length > 0
+    return length ? (
+      <ul className="job">
+        {jobsData.map(item => (
+          <JobDetails key={item.id} item={item} />
+        ))}
+      </ul>
+    ) : (
       <div className="jobs-error-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png "
@@ -281,12 +287,6 @@ class JobsPage extends Component {
           We could not find any jobs. Try other filters.
         </p>
       </div>
-    ) : (
-      <ul className="job">
-        {jobsData.map(item => (
-          <JobDetails key={item.id} item={item} />
-        ))}
-      </ul>
     )
   }
 
