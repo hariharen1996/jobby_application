@@ -61,3 +61,8 @@
     font-size: 15px;
   }
 }
+@media screen and (max-width: 565px) {
+  .content {
+    height: 500px;
+  }
+}
